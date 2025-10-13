@@ -1,8 +1,14 @@
 package com.dreamtech.ipldb.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Match {
+    @Id
     private Long id;
     private String city;
     private LocalDateTime date;
