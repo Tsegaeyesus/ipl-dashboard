@@ -2,21 +2,22 @@ package com.dreamtech.ipldb.data;
 
 import com.dreamtech.ipldb.model.Match;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDate;
 
+//@Component
 public class MatchDataProcess implements ItemProcessor<MatchInput,Match> {
     @Override
     public Match process(MatchInput matchInput) throws Exception {
+        System.out.println("Match data:"+matchInput.getWinner());
         Match match=new Match();
         match.setId(Long.parseLong(matchInput.getId()));
         match.setCity(matchInput.getCity());
-        match.setDate(LocalDateTime.parse(matchInput.getDate()));
-        match.setPlayOfMatch(matchInput.getPlayer_of_match());
+        match.setDate(LocalDate.parse(matchInput.getDate()));
+        match.setPlayerOfMatch(matchInput.getPlayer_of_match());
         match.setVenue(matchInput.getVenue());
+        match.setMatchWinner(matchInput.getWinner());
+        match.setTossWinner(matchInput.getToss_winner());
         String firstInningTeam,secondInningTeam="";
         if(matchInput.getToss_decision().equalsIgnoreCase("bat")){
           firstInningTeam=matchInput.getToss_winner();
@@ -32,7 +33,7 @@ public class MatchDataProcess implements ItemProcessor<MatchInput,Match> {
         }
         match.setTeam1(firstInningTeam);
         match.setTeam2(secondInningTeam);
-        match.setTossDecision(matchInput.getToss_winner());
+        match.setTossWinner(matchInput.getToss_winner());
         match.setTossDecision(matchInput.getToss_decision());
         match.setResult(matchInput.getResult());
         match.setResultMargin(matchInput.getResult_margin());
@@ -40,7 +41,7 @@ public class MatchDataProcess implements ItemProcessor<MatchInput,Match> {
         match.setUmpire2(matchInput.getUmpire2());
 
 
-        return null;
+        return match;
     }
 
 }
