@@ -1,18 +1,25 @@
 package com.dreamtech.ipldb.model;
 
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.GeneratedValue;
+//import jakarta.persistence.Id;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 public class Match {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String city;
-    private LocalDateTime date;
-    private String playOfMatch;
+    private LocalDate date;
+    private String playerOfMatch;
     private String venue;
     private String team1;
     private String team2;
@@ -40,20 +47,20 @@ public class Match {
         this.city = city;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public String getPlayOfMatch() {
-        return playOfMatch;
+    public String getPlayerOfMatch() {
+        return playerOfMatch;
     }
 
-    public void setPlayOfMatch(String playOfMatch) {
-        this.playOfMatch = playOfMatch;
+    public void setPlayerOfMatch(String playerOfMatch) {
+        this.playerOfMatch = playerOfMatch;
     }
 
     public String getVenue() {
