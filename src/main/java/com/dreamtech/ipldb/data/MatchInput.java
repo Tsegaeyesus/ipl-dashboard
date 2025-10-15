@@ -1,6 +1,8 @@
 package com.dreamtech.ipldb.data;
 
+
 public class MatchInput {
+    private String id;
     private String season;
     private String city;
     private String date;
@@ -19,7 +21,8 @@ public class MatchInput {
     private String super_over;
     private String method;
     private String umpire1;
-    private String umpire2;  private String id;
+    private String umpire2;
+
 
 
     public String getId() {
