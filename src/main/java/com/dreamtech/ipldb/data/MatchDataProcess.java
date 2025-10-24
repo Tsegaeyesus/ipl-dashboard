@@ -2,14 +2,15 @@ package com.dreamtech.ipldb.data;
 
 import com.dreamtech.ipldb.model.Match;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-//@Component
+@Component
 public class MatchDataProcess implements ItemProcessor<MatchInput,Match> {
     @Override
     public Match process(MatchInput matchInput) throws Exception {
-        System.out.println("Match data:"+matchInput.getWinner());
+     //   System.out.println("Match data:"+matchInput.getWinner());
         Match match=new Match();
         match.setId(Long.parseLong(matchInput.getId()));
         match.setCity(matchInput.getCity());

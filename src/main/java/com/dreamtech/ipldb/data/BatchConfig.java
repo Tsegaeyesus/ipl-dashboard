@@ -28,17 +28,19 @@ public class BatchConfig{
     public final DataSource dataSource;
     public final JobCompletionListener jobCompletionListener;
     public final JobLauncher jobLauncher;
+    public final MatchDataProcess matchDataProcess;
 
     String[] columns =new String []{
             "id","season","city","date","match_type","player_of_match","venue","team1","team2","toss_winner","toss_decision","winner","result","result_margin","target_runs","target_overs","super_over","method","umpire1","umpire2"
     };
 
-    public BatchConfig(PlatformTransactionManager platformTransactionManager, JobRepository jobRepository, DataSource dataSource, JobCompletionListener jobCompletionListener, JobLauncher jobLauncher) {
+    public BatchConfig(PlatformTransactionManager platformTransactionManager, JobRepository jobRepository, DataSource dataSource, JobCompletionListener jobCompletionListener, JobLauncher jobLauncher, MatchDataProcess matchDataProcess) {
         this.platformTransactionManager = platformTransactionManager;
         this.jobRepository = jobRepository;
         this.dataSource = dataSource;
         this.jobCompletionListener = jobCompletionListener;
         this.jobLauncher = jobLauncher;
+        this.matchDataProcess = matchDataProcess;
     }
 
     //reader
@@ -51,11 +53,6 @@ public class BatchConfig{
                 .names(columns)
                 .targetType(MatchInput.class)
                 .build();
-    }
-    //processor
-    @Bean
-    public MatchDataProcess matchDataProcess(){
-        return new MatchDataProcess();
     }
 
     //writer
@@ -75,7 +72,7 @@ public class BatchConfig{
         return new StepBuilder("Match Import Step",jobRepository)
                 .<MatchInput,Match>chunk(3,platformTransactionManager)
                 .reader(reader())
-                .processor(matchDataProcess())
+                .processor(matchDataProcess)
                 .writer(writer(dataSource))
                 .build();
     }
@@ -86,16 +83,6 @@ public class BatchConfig{
                 .listener(jobCompletionListener)
                 .start(matchStep1())
                 .build();
-    }
-
-    @Bean
-    public CommandLineRunner commandLineRunner(){
-        return run->{
-            JobParameters jobParameter=
-                    new JobParametersBuilder()
-                            .addLong("Time of Ex",System.currentTimeMillis()).toJobParameters();
-            jobLauncher.run(matchJob(),jobParameter);
-        };
     }
 
 }
