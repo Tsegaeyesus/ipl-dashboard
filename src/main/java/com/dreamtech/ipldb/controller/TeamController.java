@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("api/v1/")
+@RequestMapping("/api/v1")
+@CrossOrigin
 public class TeamController {
 
     @Autowired
@@ -27,10 +28,8 @@ public class TeamController {
         return "teamDetail";
     }
 
-    @GetMapping("/teams")
-    public ResponseEntity<Team> teams(@RequestBody Team team) throws TeamNotFoundException {
-        String teamName=team.getTeamName();
-        System.out.println(teamName);
+    @GetMapping("/teams/{teamName}")
+    public ResponseEntity<Team> teams(@PathVariable String teamName) throws TeamNotFoundException {
         Optional<Team> teams=teamService.getAllTeams(teamName);
         if(teams.isEmpty()){
             throw new TeamNotFoundException("Not found error response");
