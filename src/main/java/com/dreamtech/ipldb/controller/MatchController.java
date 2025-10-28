@@ -13,15 +13,15 @@ import java.time.Year;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1")
+@CrossOrigin
 public class MatchController {
 
     @Autowired
     private MatchService matchService;
 
-    @GetMapping("/matches")
-    public ResponseEntity<List<Match>> matches(@RequestBody Team team, @RequestParam int year){
-        String teamName=team.getTeamName();
+    @GetMapping("/matches/{teamName}")
+    public ResponseEntity<List<Match>> matches(@PathVariable("teamName") String teamName, @RequestParam("year") int year){
         List<Match> matches=matchService.getMatchesPerYear(year,teamName);
         return ResponseEntity.ok().body(matches);
     }
