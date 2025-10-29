@@ -4,13 +4,10 @@ package com.dreamtech.ipldb.model;
 //import jakarta.persistence.GeneratedValue;
 //import jakarta.persistence.Id;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Match {
@@ -142,4 +139,5 @@ public class Match {
     public void setUmpire2(String umpire2) {
         this.umpire2 = umpire2;
     }
+
 }

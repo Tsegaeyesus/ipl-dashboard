@@ -13,6 +13,8 @@ public class Team {
     private String teamName;
     private long totalMatches;
     private long totalWins;
+    @Transient
+    private List<Match> matchList;
 
     public Team(){
 
@@ -54,4 +56,12 @@ public class Team {
         this.totalWins = totalWins;
     }
 
+
+    public List<Match> getMatchList() {
+        return matchList;
+    }
+
+    public void setMatchList(List<Match> matchList) {
+        this.matchList = matchList;
+    }
 }

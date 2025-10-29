@@ -22,15 +22,15 @@ public class MatchDataProcess implements ItemProcessor<MatchInput,Match> {
         String firstInningTeam,secondInningTeam="";
         if(matchInput.getToss_decision().equalsIgnoreCase("bat")){
           firstInningTeam=matchInput.getToss_winner();
-            secondInningTeam= matchInput.getWinner().equalsIgnoreCase(matchInput.getTeam1()) ?
+            secondInningTeam= firstInningTeam.equalsIgnoreCase(matchInput.getTeam1()) ?
                     matchInput.getTeam2() :
                     matchInput.getTeam1();
         }
         else{
            secondInningTeam= matchInput.getToss_winner();
-            firstInningTeam=matchInput.getWinner().equalsIgnoreCase(matchInput.getTeam1()) ?
-                    matchInput.getTeam1() :
-                    matchInput.getTeam2();
+            firstInningTeam=secondInningTeam.equalsIgnoreCase(matchInput.getTeam1()) ?
+                    matchInput.getTeam2() :
+                    matchInput.getTeam1();
         }
         match.setTeam1(firstInningTeam);
         match.setTeam2(secondInningTeam);
