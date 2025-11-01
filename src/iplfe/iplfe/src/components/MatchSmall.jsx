@@ -1,8 +1,12 @@
 import {React} from 'react'
-export const MatchSmall=({match})=>{
+import {Link} from 'react-router-dom'
+export const MatchSmall=({teamName,match})=>{
+  const otherTeam=teamName===match.team1?match.team2:match.team1;
+  const otherTeamRoute=`/teams/${otherTeam}`;
     return (
         <div>
-      <p>{match.team1} vs {match.team2}</p>
+      <p>vs <Link to={otherTeamRoute}>{otherTeam}</Link></p>
+      <p><b>{match.matchWinner} wins the match by {match.resultMargin} wickets</b></p>
         </div>
     )
 }
