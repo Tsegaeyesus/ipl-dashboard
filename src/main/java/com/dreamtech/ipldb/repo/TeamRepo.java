@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface TeamRepo extends JpaRepository<Team,Long> {
-   Optional<Team> findByTeamName(String teamName);
+   Optional<Team> findByTeamNameIgnoreCase(String teamName);
    Team findById(long id);
 }
