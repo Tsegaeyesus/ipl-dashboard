@@ -28,7 +28,7 @@ public class TeamServiceImpl implements TeamService {
     public Optional<Team> getAllTeams(String teamName) {
         Pageable pageable= PageRequest.of(0,10);
         List<Match> matches=matchRepo.getAllMatchByTeamNameOrderByDateDesc(teamName,pageable);
-        Optional<Team> team=teamRepo.findByTeamName(teamName);
+        Optional<Team> team=teamRepo.findByTeamNameIgnoreCase(teamName);
         if(team.isPresent()){
             team.get().setMatchList(matches);
         }
