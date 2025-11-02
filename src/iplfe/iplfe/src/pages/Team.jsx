@@ -2,6 +2,8 @@ import {React,useState,useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import {MatchSmall} from '../components/MatchSmall';
 import {MatchDetail} from '../components/MatchDetail';
+import { Chart } from '../components/Chart';
+import './Team.scss'
 
 
 
@@ -16,7 +18,7 @@ export const Team=()=>{
    const fetchTeam= async ()=>{
     try{
         const encodedTeamName = encodeURIComponent(teamName);
-        const url=`http://localhost:9091/api/v1/teams/${encodedTeamName}`;
+        const url=`http://localhost:9090/api/v1/teams/${encodedTeamName}`;
 // console.log(url)
       const response=await fetch(url);
       if(!response.ok){
@@ -45,24 +47,39 @@ export const Team=()=>{
     return (
     
  
-        <div className='team'>
+        <div className='teamPage'>
       
-            <h2>Team: {err ? <i>{err}</i>: team.teamName}</h2> 
            
-            {err ? err: <h3>Total Matches: {team.totalMatches} TotalWins: {team.totalWins}</h3> }
            
-            <h4>Latest Match</h4>
+           <div className='teamName'>
+             <h2>{err ? <i>{err}</i>: team.teamName}</h2> 
+           </div>
+           <div className='teamPagetSummary'>
+            <Chart totalMatches={team.totalMatches} totalWins={team.totalWins}/>
+              {err ? err: <h3>Total Matches: {team.totalMatches} TotalWins: {team.totalWins}</h3> }
+           </div>
+           
+        
     {
         match && match.length <=0 ? err:match.slice(0,1).map((match)=>{
-            return <MatchDetail key={match.id} teamName={team.teamName} match={match}/>
+            return <div className='teamPageLatestMatch' key={match.id}>
+                    <h4>Latest Match</h4>
+                <MatchDetail  teamName={team.teamName} match={match}/>
+                </div>
         })
     }
-           <h5>More Matches</h5>
            {
  match && match.length <=0 ? err :match.slice(1,4).map((t)=>{
-  return <MatchSmall key={t.id} teamName={team.teamName} match={t}/>
+  return <div className='teamPageMatchDetail' key={t.id}>
+      <MatchSmall  teamName={team.teamName} match={t}/>
+
+    </div>
 })
            }
+                 <div className='teamPageMore'>
+                <a href='#'>More</a>
+           </div>
+           
         </div>
     )
 
