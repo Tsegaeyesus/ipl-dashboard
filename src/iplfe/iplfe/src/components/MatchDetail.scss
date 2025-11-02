@@ -1,0 +1,34 @@
+.MatchDetail{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid-template-rows: 1fr;
+    grid-template-rows: auto auto auto; /* let rows adjust to content */
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-template-rows: auto auto auto; /* let rows adjust to content */
+    gap: 20px;
+
+    grid-column: span 1;
+
+    .match-team,.match-date,.match-venue,.match-winner{
+    margin-top: 13px;
+    }
+.match-dtail-main{
+    grid-column: span 1;
+}
+    .match-detail-extra{
+ .match-firstInning,.match-secondInning,.match-manofzmatch,.match-umpires{
+margin-bottom: 12px;
+ }
+    justify-self: end;
+    align-self: center;
+    grid-column: span 2;
+    }
+}
+
+    .match-detail-lose{
+     background-color: rgb(2, 126, 227);
+    }
+    .match-detail-won{
+    background-color: rgb(128, 141, 96);
+    }
