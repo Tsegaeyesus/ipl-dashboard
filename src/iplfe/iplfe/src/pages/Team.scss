@@ -1,0 +1,34 @@
+.teamPage{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px;
+
+.teamName{
+    font-family: "Atma", system-ui;
+    grid-column: span 3;
+    justify-self: start;
+    align-self: center;
+    font-size: 2rem;
+}
+.teamPagetSummary{
+
+    justify-self: end;
+    align-self: center;
+    grid-column: span 1;
+}
+.teamPageLatestMatch{
+    grid-column: span 4;
+}
+.teamPageMore{
+    height: 200px;
+        padding: 10px;
+     margin-bottom: 12px;
+     justify-self: start;
+     align-self: center;
+}
+
+}
+
+
+
