@@ -1,5 +1,5 @@
 import {React,useState,useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import {MatchSmall} from '../components/MatchSmall';
 import {MatchDetail} from '../components/MatchDetail';
 import { Chart } from '../components/Chart';
@@ -12,13 +12,15 @@ export const Team=()=>{
     const [team,setTeam]=useState({});
     const [match,setMatch]=useState([])
     const [err,setError]=useState()
+    const encodedTeamName = encodeURIComponent(teamName);
+    const urlMatches=`/teams/${encodedTeamName}/matches/2020`;
 
      useEffect(
 ()=>{
    const fetchTeam= async ()=>{
     try{
-        const encodedTeamName = encodeURIComponent(teamName);
         const url=`http://localhost:9090/api/v1/teams/${encodedTeamName}`;
+
 // console.log(url)
       const response=await fetch(url);
       if(!response.ok){
@@ -46,10 +48,8 @@ export const Team=()=>{
 
     return (
     
- 
+
         <div className='teamPage'>
-      
-           
            
            <div className='teamName'>
              <h2>{err ? <i>{err}</i>: team.teamName}</h2> 
@@ -77,7 +77,8 @@ export const Team=()=>{
 })
            }
                  <div className='teamPageMore'>
-                <a href='#'>More</a>
+                    <Link to={urlMatches}>More</Link>
+                {/* <a href='#'>More</a> */}
            </div>
            
         </div>
