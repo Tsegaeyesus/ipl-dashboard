@@ -1,0 +1,21 @@
+.yearSelector{
+
+    margin-top: 100px;
+    justify-self: center;
+    align-self: center;
+    ul {
+      list-style: none;
+      li{
+        a{
+          font-size: 1.5rem;
+          &:hover{
+            color: aquamarine;
+          }
+
+        }
+          padding: 10px;
+    }
+
+    }
+      
+}
