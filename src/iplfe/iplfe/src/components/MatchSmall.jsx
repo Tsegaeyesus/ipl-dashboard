@@ -8,7 +8,7 @@ export const MatchSmall=({teamName,match})=>{
   const IsWon=teamName===match.matchWinner
     return (
          <div className={`Match-small ${IsWon ? 'match-detail-won':'match-detail-lose'}`}>
-      <h4>vs <Link to={otherTeamRoute}>{otherTeam}</Link></h4>
+      <div>vs <Link to={otherTeamRoute}>{otherTeam}</Link></div>
       <h4>{match.matchWinner} wins the match by {match.resultMargin} wickets</h4>
    
         </div>
