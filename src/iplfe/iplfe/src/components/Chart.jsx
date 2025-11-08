@@ -1,6 +1,6 @@
 import {react} from 'react'
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-  const COLORS = ["#4CAF50", "#F44336"]; // green for wins, red for losses
+  const COLORS = ["rgb(128, 141, 96)", "rgb(79, 161, 249)"]; // green for wins, red for losses
 
 export const Chart=({totalMatches,totalWins})=>{
 const data=[
