@@ -19,7 +19,7 @@ export const Team=()=>{
 ()=>{
    const fetchTeam= async ()=>{
     try{
-        const url=`http://localhost:9090/api/v1/teams/${encodedTeamName}`;
+        const url=`/api/v1/teams/${encodedTeamName}`;
 
 // console.log(url)
       const response=await fetch(url);

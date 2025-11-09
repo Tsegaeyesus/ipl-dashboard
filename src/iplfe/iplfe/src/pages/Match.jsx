@@ -13,7 +13,7 @@ export const Match = () => {
 
    const fetchmatchesOnChange=async(year)=>{
         try{
-        const response=await fetch(`http://localhost:9090/api/v1/matches/${teamName}?year=${year}`)
+        const response=await fetch(`/api/v1/matches/${teamName}?year=${year}`)
         const data=await response.json();
         setMatch(data)
         if(!response){

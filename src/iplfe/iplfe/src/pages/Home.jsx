@@ -12,7 +12,7 @@ export const Home=()=>{
 useEffect(()=>{
 const fetchTeams=async()=>{
     try{
-    const response=await fetch('http://localhost:9090/api/v1/');
+    const response=await fetch('/api/v1/');
     if(!response){
         throw new Error('Not able to fetch')
     }
