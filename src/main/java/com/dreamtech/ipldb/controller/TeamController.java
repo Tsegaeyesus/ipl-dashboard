@@ -28,6 +28,14 @@ public class TeamController {
         return "teamDetail";
     }
 
+
+    @GetMapping("/")
+    public ResponseEntity<List<Team>> getAllTeams(){
+
+        List<Team> teams=teamService.findAll();
+        return ResponseEntity.ok(teams);
+
+    }
     @GetMapping("/teams/{teamName}")
     public ResponseEntity<Team> teams(@PathVariable String teamName) throws TeamNotFoundException {
         Optional<Team> teams=teamService.getAllTeams(teamName);
