@@ -41,4 +41,9 @@ public class TeamServiceImpl implements TeamService {
         return teamRepo.findById(id);
     }
 
+    @Override
+    public List<Team> findAll() {
+        return teamRepo.findAll();
+    }
+
 }
