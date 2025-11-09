@@ -10,4 +10,6 @@ public interface TeamService {
     Optional<Team> getAllTeams(String teamName);
 
     Team findById(long id);
+
+    List<Team> findAll();
 }
