@@ -15,13 +15,11 @@ export const YearSelector=({fetch})=>{
         <div className='yearSelector'>
             {
                 years.map((year)=>{
-                   return <ul>
+                   return <ul key={year}>
                     <li>
                         <Link to={`/teams/${teamName}/matches/${year}`}>{year}</Link>
                     </li>
                    </ul>
-                   
-                //    <h2 onClick={()=>fetch(year)}>{year}</h2>
                 })
             }
         </div>
